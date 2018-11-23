@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-toolbar>
+      <ion-title>Add Task</ion-title>
+      <ion-buttons end>
+      <button ion-button (click)="dismiss()">Close</button>
+      </ion-buttons>
+  </ion-toolbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+    <p *ngIf="failedSubmit" style="color: #ea6153;">Please fill out all details accurately.</p>
+    <form [formGroup]="inputForm" no-lines>
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input formControlName="taskTitle" type="text" required></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!inputForm.controls.taskTitle.valid  && (failedSubmit)">
+          <p>Please enter a valid title.</p>
+      </ion-item>
+      <ion-item>
+        <button ion-button type="submit" block (click)="addTask()" >Add Task</button>
+      </ion-item>
+    </form>
+  </ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tasks</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openModalAdd()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let task of this.taskProvider.getTasksToDo();">
+      <ion-item>
+        {{ task.title }} 
+      </ion-item>
+      <ion-item-options side="right" (ionSwipe)="this.doneTask(task);">
+        <button ion-button expandable  color="secondary" (click)="this.doneTask(task)">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+      </ion-item-options>
+
+      <ion-item-options side="left" (ionSwipe)="this.presentConfirm(task)">
+        <button ion-button expandable color="danger" (click)="this.deleteTask(task)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
